@@ -20,12 +20,6 @@ public class AuthenticationController {
         return ResponseEntity.ok(Map.of("auth-token", token));
     }
 
-    @PostMapping("/cloud/login")
-    public ResponseEntity<?> cloudLogin(@RequestBody LoginRequest request) {
-        String token = authenticationService.login(request);
-        return ResponseEntity.ok(Map.of("auth-token", token));
-    }
-
     @PostMapping("/logout")
     public ResponseEntity<?> logout(@RequestHeader("auth-token") String token) {
         authenticationService.logout(token);
