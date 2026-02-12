@@ -1,0 +1,27 @@
+spring.application.name=Cloud-storage
+server.port=8081
+
+# PostgreSQL
+spring.datasource.url=jdbc:postgresql://postgres-dev2:5432/clouddb
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# JPA
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.format_sql=true
+
+# JWT
+jwt.secret=cloudapp
+jwt.expiration=3600000
+token.signing.key=cloudapp
+jwt.token.signing.key=cloudapp
+jwt.secret.key=cloudapp
+
+
+# Logging
+logging.level.ru.netology=DEBUG
+
+spring.main.allow-circular-references=true
