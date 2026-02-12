@@ -150,9 +150,12 @@ curl http://localhost:8081/cloud/test/users
 curl -X POST http://localhost:8081/cloud/test/create-test-user
 
 Тестовые учетные записи 
-Логин Пароль Роль
+Логин Пароль
+
 testuser	password123	ROLE_USER
+
 admin admin123 ROLE_ADMIN
+
 user user123 ROLE_USER
 
 В ходе разработки были решены следующие сложные задачи:
