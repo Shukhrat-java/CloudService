@@ -16,7 +16,6 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/cloud")
 public class FileController {
     private final FileService fileService;
     private final AuthenticationService authenticationService;
