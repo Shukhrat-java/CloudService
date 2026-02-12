@@ -148,24 +148,6 @@ curl http://localhost:8081/cloud/test/users
 
 # Создайте нового пользователя
 curl -X POST http://localhost:8081/cloud/test/create-test-user
-Структура проекта
-CloudService-main/
-├── src/
-│   ├── main/
-│   │   ├── java/ru/netology/
-│   │   │   ├── controller/     # REST-контроллеры
-│   │   │   ├── service/        # Бизнес-логика
-│   │   │   ├── repository/     # Работа с БД
-│   │   │   ├── entity/         # JPA-сущности
-│   │   │   ├── dto/           # Data Transfer Objects
-│   │   │   ├── security/      # JWT и Security
-│   │   │   └── exception/     # Обработка ошибок
-│   │   └── resources/
-│   │       ├── application.yml
-│   │       └── data.sql
-├── Dockerfile
-├── docker-compose.yml
-└── pom.xml
 
 Тестовые учетные записи
 Логин	Пароль	Роль
