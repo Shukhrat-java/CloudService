@@ -39,8 +39,8 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/login", "/cloud/login").permitAll()
-                        .requestMatchers("/test/**", "/cloud/test/**").permitAll()
+                        .requestMatchers("/login").permitAll()
+                        .requestMatchers("/test/**").permitAll()
                         .requestMatchers("/error").permitAll()
                         .anyRequest().authenticated()
                 )
