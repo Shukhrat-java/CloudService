@@ -54,9 +54,9 @@ docker logs cloudapp -f
 Ожидаемый результат:
 
 Started CloudApplication in X.XXX seconds
-Tomcat started on port 8081 (http) with context path '/cloud'
+Tomcat started on port 8081 (http) with context path '/'
 3. Создание тестового пользователя
-   curl -X POST http://localhost:8081/cloud/test/create-test-user
+   curl -X POST http://localhost:8081/test/create-test-user
    Ответ:
 
 json
@@ -66,11 +66,11 @@ json
 "role": "ROLE_USER"
 }
 4. Запуск фронтенда
-   Вариант А: Локальный запуск (рекомендуется)
+   Вариант А: Локальный запуск
    cd C:\Users\<ваш-пользователь>\Downloads\netology-diplom-frontend
 
 # Создание .env файла
-echo "VUE_APP_BASE_URL=http://localhost:8081/cloud" > .env
+echo "VUE_APP_BASE_URL=http://localhost:8081" > .env
 
 # Установка зависимостей
 npm install
@@ -91,27 +91,27 @@ docker-compose -f docker-compose.frontend.yml up -d
 
 Тестирование API через curl
 1. Получение токена:
-curl -X POST http://localhost:8081/cloud/login \
+curl -X POST http://localhost:8081/login \
 -H "Content-Type: application/json" \
 -d '{"login":"testuser","password":"password123"}'
 
 2. Загрузка файла:
-curl -X POST http://localhost:8081/cloud/file?filename=test.txt \
+curl -X POST http://localhost:8081/file?filename=test.txt \
 -H "auth-token: Bearer <ваш-токен>" \
 -H "Content-Type: multipart/form-data" \
 -F "file=@/path/to/file.txt"
 
 3. Получение списка файлов:
-curl -X GET http://localhost:8081/cloud/list?limit=10 \
+curl -X GET http://localhost:8081/list?limit=10 \
 -H "auth-token: Bearer <ваш-токен>"
 
 4. Скачивание файла:
-curl -X GET http://localhost:8081/cloud/file?filename=test.txt \
+curl -X GET http://localhost:8081/file?filename=test.txt \
 -H "auth-token: Bearer <ваш-токен>" \
 --output downloaded.txt
 
 5. Удаление файла:
-curl -X DELETE http://localhost:8081/cloud/file?filename=test.txt \
+curl -X DELETE http://localhost:8081/file?filename=test.txt \
 -H "auth-token: Bearer <ваш-токен>"
 Docker-команды
 Управление контейнерами
@@ -141,13 +141,13 @@ netstat -ano | findstr :8081
 Фронтенд не подключается
 Проверьте .env файл:
 cat .env
-# Должно быть: VUE_APP_BASE_URL=http://localhost:8081/cloud
+# Должно быть: VUE_APP_BASE_URL=http://localhost:8081
 Проверьте CORS-настройки в браузере (F12 → Console)401 Unauthorized при логине
 # Проверьте, существует ли пользователь
-curl http://localhost:8081/cloud/test/users
+curl http://localhost:8081/test/users
 
 # Создайте нового пользователя
-curl -X POST http://localhost:8081/cloud/test/create-test-user
+curl -X POST http://localhost:8081/test/create-test-user
 
 Тестовые учетные записи 
 Логин Пароль
@@ -162,7 +162,7 @@ user user123 ROLE_USER
 ✅ Настройка CORS для взаимодействия фронтенда и бэкенда
 ✅ Конфигурация JWT с безопасным ключом шифрования
 ✅ Устранение конфликта двух UserDetailsService в Spring Security
-✅ Проблема с URL (двойной /cloud в запросах)
+✅ Проблема с URL (двойной / в запросах)
 ✅ StackOverflowError в AuthenticationManager
 ✅ WeakKeyException в JWT (ключ увеличен до 256 бит)
 ✅ Docker-контейнеризация с томом для PostgreSQL
