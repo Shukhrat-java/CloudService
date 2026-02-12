@@ -149,21 +149,11 @@ curl http://localhost:8081/cloud/test/users
 # Создайте нового пользователя
 curl -X POST http://localhost:8081/cloud/test/create-test-user
 
-Тестовые учетные записи
-Логин	Пароль	Роль
+Тестовые учетные записи 
+Логин Пароль Роль
 testuser	password123	ROLE_USER
-admin	admin123	ROLE_ADMIN
-user	user123	ROLE_USER
-
-Метод	URL	Описание
-POST	/cloud/login	Авторизация
-POST	/cloud/logout	Выход
-GET	/cloud/list?limit={n}	Список файлов
-POST	/cloud/file?filename={name}	Загрузка файла
-GET	/cloud/file?filename={name}	Скачивание файла
-PUT	/cloud/file?filename={name}	Переименование
-DELETE	/cloud/file?filename={name}	Удаление файла
-POST	/cloud/test/create-test-user	Создать тестового пользователя
+admin admin123 ROLE_ADMIN
+user user123 ROLE_USER
 
 В ходе разработки были решены следующие сложные задачи:
 ✅ Настройка CORS для взаимодействия фронтенда и бэкенда
