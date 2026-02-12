@@ -13,29 +13,25 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/test")
 @CrossOrigin(origins = "http://localhost:8080")
 public class TestAuthController {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    @PostMapping("/check-password")
+    @PostMapping("/test/check-password")
     public ResponseEntity<?> checkPassword(@RequestBody Map<String, String> request) {
         String username = request.get("username");
         String password = request.get("password");
 
-        // Используем правильный тип - Optional<UserEntity>
         Optional<UserEntity> userOpt = userRepository.findById(username);
 
         Map<String, Object> response = new HashMap<>();
         response.put("username", username);
 
         if (userOpt.isPresent()) {
-            // Получаем сам объект UserEntity, не приводим к Object[]
             UserEntity user = userOpt.get();
 
-            // Получаем пароль напрямую из объекта
             String storedPassword = user.getPassword();
 
             boolean matches = storedPassword != null && passwordEncoder.matches(password, storedPassword);
@@ -50,14 +46,13 @@ public class TestAuthController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/users")
+    @GetMapping("/test/users")
     public ResponseEntity<?> getAllUsers() {
         return ResponseEntity.ok(userRepository.findAll());
     }
 
-    @PostMapping("/create-test-user")
+    @PostMapping("/test/create-test-user")
     public ResponseEntity<?> createTestUser() {
-        // Создаем реального пользователя через Entity
         String encodedPassword = passwordEncoder.encode("password123");
 
         UserEntity testUser = UserEntity.builder()
